@@ -1,0 +1,18 @@
+﻿@model LojaRoupasMVCv6.Models.POJO.Vendedores
+
+@{
+    ViewBag.Title = "JeR - Fazer Login";
+}
+
+<form method="post" action="Login">
+    <h7>Usuário: </h7><input type="text" name="idVendedor" id="idVendedor" required />
+    <br />
+    <h7>Senha: </h7><input type="password" name="senhaVendedor" id="senhaVendedor" required />
+    <br />
+    <input type="submit" id="Inserir" value="Entrar" />
+    <br />
+    <br />
+     <p style="color:red; font-size:large;"> @Html.Raw(ViewBag.retorno) </p>
+    
+    <p style="">@Html.ActionLink("Entrar como Administrador", "Login", "Admin")</p>
+</form>

@@ -1,0 +1,99 @@
+﻿@model PagedList.IPagedList<LojaRoupasMVCv6.Models.POJO.Clientes>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "JeR - Clientes";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Clientes</h2>
+
+<hr align="center" width="auto" size="1" color="#fff">
+<br />
+<form method="post" action="ClientesGrid">
+    <input type="text" placeholder="Pesquisar Cliente" name="nomeCliente" id="nomeCliente" />
+    <input type="submit" id="pesquisar" value="Pesquisar" />
+</form>
+<br />
+@if (TempData["Msg"] != null)
+{
+
+    <p style="color:green; font-size: 14px;"> @TempData["Msg"] </p>
+}
+
+
+<h4>@Html.ActionLink("Criar novo", "ClientesInsert")</h4>
+
+
+<table>
+    <tr>
+        <th>
+            Código 
+        </th>
+        <th>
+            Nome
+        </th>
+        <th>
+            RG
+        </th>
+        <th>
+            CPF
+        </th>
+        <th>
+            Telefone
+        </th>
+        <th>
+            Endereço
+        </th>
+        <th>
+            Data Nasc.
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <center>&emsp;&emsp;&emsp;@Html.DisplayFor(modelItem => item.idCliente) &emsp;&emsp;&emsp;</center>
+            </td>
+            <td>
+               @Html.DisplayFor(modelItem => item.nomeCliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.rgCliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cpfCliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.telefoneCliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.enderecoCliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dtnascCliente)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "ClientesEdit", new { id = item.idCliente })
+            </td>
+            <td>
+                @Html.ActionLink("Deletar", "ClientesDelete", new { id = item.idCliente })
+            </td>
+
+
+
+        </tr>
+    }
+</table>
+<div id="GridPaging" class="container-fluid">
+    <div class="row-fluid">
+        <div class="col-md-12 CrudGrid">
+            <div id='Paging' style="text-align: center">
+                P&aacute;gina @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+                @Html.PagedListPager(Model, page => Url.Action("ClientesGrid", new { page }))
+            </div>
+        </div>
+    </div>
+</div>

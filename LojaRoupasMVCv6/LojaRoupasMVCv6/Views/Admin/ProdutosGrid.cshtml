@@ -1,0 +1,99 @@
+﻿@model PagedList.IPagedList<LojaRoupasMVCv6.Models.POJO.Produtos>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "JeR - Produtos";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Produtos</h2>
+<hr align="center" width="auto" size="1" color="#fff">
+<br />
+<form method="post" action="ProdutosGrid">
+    <input type="text" placeholder="Pesquisar Produto" name="descricaoProduto" id="descricaoProduto" />
+    <input type="submit" id="pesquisar" value="Pesquisar" />
+</form>
+<br />
+@if (TempData["Msg"] != null)
+{
+
+    <p style="color:green; font-size: 14px; background-color:white;"> @TempData["Msg"] </p>
+}
+
+
+<h4>@Html.ActionLink("Criar novo", "ProdutosInsert")</h4>
+
+
+<table>
+    <tr>
+        <th>
+            <center>Código</center>
+       </th>
+        <th>
+           Estoque
+        </th>
+        <th>
+            &emsp;Descrição
+        </th>
+        <th>
+            Tam.
+        </th>
+        <th>
+            &ensp;Preço
+        </th>
+        <th>
+            Marca
+        </th>
+        <th>
+            Categoria
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <center>@Html.DisplayFor(modelItem => item.idProduto)</center>
+            </td>
+            <td>
+                <center>@Html.DisplayFor(modelItem => item.qtdestoqueProduto) </center>
+            </td>
+            <td>
+                &emsp;@Html.DisplayFor(modelItem => item.descricaoProduto)
+            </td>
+            <td>
+                <center> @Html.DisplayFor(modelItem => item.tamanhoProduto)</center>
+            </td>
+            <td>
+                &ensp; R$ @Html.DisplayFor(modelItem => item.precoProduto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.marcaProduto)
+            </td>
+            <td>
+                <center> @Html.DisplayFor(modelItem => item.idCategoria)</center>
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "ProdutosEdit", new { id = item.idProduto })
+            </td>
+            <td>
+                @Html.ActionLink("Deletar", "ProdutosDelete", new { id = item.idProduto })
+            </td>
+
+
+
+        </tr>
+    }
+</table>
+<br /><br />
+<div id="GridPaging" class="container-fluid">
+    <div class="row-fluid">
+        <div class="col-md-12 CrudGrid">
+            <div id='Paging' style="text-align: center">
+                P&aacute;gina @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+                @Html.PagedListPager(Model, page => Url.Action("ProdutosGrid", new { page }))
+            </div>
+        </div>
+    </div>
+</div>

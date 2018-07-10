@@ -1,0 +1,82 @@
+﻿@model PagedList.IPagedList<LojaRoupasMVCv6.Models.POJO.Produtos>
+@using PagedList.Mvc;
+
+
+@{
+    ViewBag.Title = "JeR - Produtos";
+}
+
+<form method="post" action="Produtos">
+    <input type="text" placeholder="Pesquisar Produto" name="descricaoProduto" id="descricaoProduto" />
+    <input type="submit" id="pesquisar" value="Pesquisar" />
+</form>
+
+<table>
+    <tr>
+        <th>
+           Cód.
+        </th>
+        <th>
+            Descrição
+        </th>
+        <th>
+           Categoria
+        </th>
+        <th>
+           Preço
+        </th>
+        <th>
+            Marca
+        </th>
+        <th>
+            Qtd.
+        </th>
+        <th>
+           Tam.
+        </th>
+        
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.idProduto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.descricaoProduto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.idCategoria)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.precoProduto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.marcaProduto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.qtdestoqueProduto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tamanhoProduto)
+        </td>
+              
+        <td>
+            @Html.ActionLink("Adicionar", "pedidos", new { item.idProduto, item.descricaoProduto})
+            
+        </td>
+    </tr>
+}
+
+</table>
+<div id="GridPaging" class="container-fluid">
+    <div class="row-fluid">
+        <div class="col-md-12 CrudGrid">
+            <div id='Paging' style="text-align: center">
+                P&aacute;gina @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+                @Html.PagedListPager(Model, page => Url.Action("Produtos", new { page }))
+            </div>
+        </div>
+    </div>
+</div>

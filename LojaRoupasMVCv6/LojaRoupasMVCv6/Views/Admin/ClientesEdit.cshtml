@@ -1,0 +1,46 @@
+﻿@model LojaRoupasMVCv6.Models.POJO.Clientes
+
+@{
+    ViewBag.Title = "JeR - Clientes";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<script src="~/Scripts/jquery-1.9.1.js" type="text/javascript"></script>
+<script type="text/javascript" src="~/Scripts/jquery.mask.min.js"></script>
+
+<script>
+
+    jQuery(function ($) {
+        $("#telefoneCliente").mask("(99) 9999-99999");
+        $("#cpfCliente").mask("999.999.999-99");
+        $("#dtnascCliente").mask("99/99/9999");
+    });
+
+</script>
+
+
+<h2>Editar Clientes</h2>
+
+<form action="ClientesEdit" method="post">
+
+    <input type="hidden" value="@Model.idCliente" id="idCliente" name="idCliente" required />
+    <br />
+
+
+    <h7><b>Nome:</b> </h7> <input type="text" placeholder="@Model.nomeCliente" value="@Model.nomeCliente" id="nomeCliente" name="nomeCliente" required />
+    <br />
+    <h7><b>RG:</b> </h7> <input type="text" placeholder="@Model.rgCliente" value="@Model.rgCliente" maxlength="11" id="rgCliente" name="rgCliente" required />
+    <br />
+    <h7><b>CPF:</b> </h7> <input type="text" placeholder="@Model.cpfCliente" value="@Model.cpfCliente" maxlength="14" id="cpfCliente" pattern="[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}$" name="cpfCliente" required />
+    <br />
+    <h7><b>Telefone:</b> </h7> <input type="tel" placeholder="@Model.telefoneCliente" value="@Model.telefoneCliente" pattern="\([0-9]{2}\) [0-9]{4}-[0-9]{4,5}$" id="telefoneCliente" name="telefoneCliente" required />
+    <br />
+    <h7><b>Endereço:</b> </h7> <input type="text" placeholder="@Model.enderecoCliente" value="@Model.enderecoCliente" id="enderecoCliente" name="enderecoCliente" required />
+    <br />
+    <h7><b>Data de Nascimento:</b> </h7> <input type="text" placeholder="@Model.dtnascCliente" value="@Model.dtnascCliente" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$" id="dtnascCliente" name="dtnascCliente" required />
+    
+    <br />
+    <br />
+    <input type="submit" value="Editar" class="btngreen" />
+
+</form>

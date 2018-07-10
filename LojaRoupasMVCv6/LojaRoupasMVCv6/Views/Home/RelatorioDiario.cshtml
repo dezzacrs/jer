@@ -1,0 +1,54 @@
+﻿@model IEnumerable<LojaRoupasMVCv6.Models.POJO.Vendas>
+
+
+@{
+    ViewBag.Title = "JeR Relatório Diário de Vendas";
+}
+
+<h2>Vendas</h2>
+
+
+<div>@Html.ActionLink("Get Report PDF", "ERRelatorioDiario")</div>
+
+<table>
+    <tr>
+        <th>
+            Código
+        </th>
+        <th>
+            Cliente
+        </th>
+        <th>
+            Total
+        </th>
+        <th>
+            Tipo
+        </th>
+        
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.idVenda)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.idCliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.totalVenda)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tipoVenda)
+            </td>
+            
+
+
+
+
+
+        </tr>
+    }
+</table>

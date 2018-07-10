@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "JeR - Venda a prazo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    function run() {
+
+        
+        var P = document.getElementById("parcelas").value;
+        //alert("teste" + P);
+        var VT = document.getElementById("VT").value;
+        //alert("teste" + VT.replace(",","."));
+        var res = parseFloat(VT.replace(",", ".") / P).toFixed(2).replace(".", ",");
+
+        //alert("teste" + res);
+        var divP = document.getElementById('divID');
+        divP.innerHTML = "<h8><b>Valor da parcela:</b> R$ " + res +"</h8>";
+   
+    }
+</script>
+
+
+<h2>Venda a prazo</h2>
+
+
+<h9><b>Total:</b> R$ @Html.Raw(ViewBag.total)</h9> 
+<br /><br />
+
+
+<form method="post" action="realizarVendaaPrazo">
+    <input type="hidden" name="VT" id="VT" value="@ViewBag.total">
+
+        <b><h8>Cliente:</b> <input type="text" style="width:30px;" name="idCliente" value="@Request["idCliente"]" readonly>&nbsp;&nbsp;<h10>@Html.Raw(ViewBag.nomeCliente) </h10> &nbsp; &nbsp; @Html.ActionLink("(Alterar)", "selecionarCliente") </h8>
+        <br /><br />
+        <b><h7>Número de parcelas:</b></h7>
+        <select name="parcelas" id="parcelas" onchange="run()" required>
+            <option value="0" selected></option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
+
+    <br /><br />
+        <div id="divID">
+        </div>
+    <br />
+        <input type="submit" value="Confirmar" class="btngreen" />
+</form>
+
+<br />
+<h12>@Html.ActionLink("Cancelar Pedido", "cancelarPedido")</h12>

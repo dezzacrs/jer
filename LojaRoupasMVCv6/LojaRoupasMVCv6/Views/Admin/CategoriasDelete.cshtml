@@ -1,0 +1,25 @@
+﻿@model LojaRoupasMVCv6.Models.POJO.Categorias
+
+@{
+    ViewBag.Title = "JeR - Categorias";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<h2>Deseja realmente deletar a Categoria abaixo?</h2>
+<br />
+<form action="CategoriasDelete" method="post">
+
+    <input type="hidden" value="@Model.idCategoria" id="idCategoria" name="idCategoria" required />
+
+    <h3>@Model.idCategoria</h3>
+
+    <h3>@Model.nomeCategoria</h3>
+
+    
+
+    <br />
+    <input type="submit" value="Deletar" class="btnred" />
+    <br />
+    <a href="@Url.Action("CategoriasGrid", "Admin")">Cancelar</a>
+
+    <br />
+</form>

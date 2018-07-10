@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "vendas";
+}
+
+<h2>Realizar Venda</h2>
+
+<a href="@Url.Action("vendaavista", "Home")">
+    <span style="display: block; font-style:normal; width:300px; text-align:center;">
+         <img src="../Images/dinheiro.png" /><br />À Vista - Selecionar método de pagamento
+    </span>
+</a>
+<br />
+<hr align="center" width="auto" size="1" color="#fff">
+<br />
+<a href="@Url.Action("selecionarCliente", "Home")">
+    <span style="display: block; font-style: normal; width: 300px; text-align: center;">
+        <img src="../Images/aprazo.png" /><br />A prazo - Selecionar Cliente
+    </span>
+</a>
+
+
+<br />
+<hr align="center" width="auto" size="1" color="#fff">
+<br />
+<p style="color:#ff0000;">@Html.ActionLink("Cancelar Pedido", "cancelarPedido")</p>
+
+
+   

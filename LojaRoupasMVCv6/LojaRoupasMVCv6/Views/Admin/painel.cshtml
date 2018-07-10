@@ -1,0 +1,13 @@
+﻿@{
+    ViewBag.Title = "JeR - Painel de Controle";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Painel de Controle - Administrador</h2>
+
+<br />
+
+<a href="@Url.Action("ClientesGrid", "Admin")"><img src="../Images/clientes.png" /></a>
+<a href="@Url.Action("ProdutosGrid", "Admin")"><img src="../Images/produtos.png" /></a>
+<a href="@Url.Action("VendedoresGrid", "Admin")"><img src="../Images/vendedores.png" /></a>
+<a href="@Url.Action("CategoriasGrid", "Admin")"><img src="../Images/categorias.png" /></a>

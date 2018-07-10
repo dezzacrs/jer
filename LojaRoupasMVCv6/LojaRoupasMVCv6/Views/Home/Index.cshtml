@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "JeR - Sistema para Loja de Roupas";
+}
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <br />
+                <h2>@ViewBag.Message.</h2>
+                <br />
+                <h2>@Html.ActionLink("Entrar no Sistema", "Login", "Home")</h2>
+            </hgroup>
+            <p>
+                
+            </p>
+        </div>
+    </section>
+}
+
+    <center>
+        <a href="@Url.Action("Login", "Home")"><img src="~/Images/jer.png" /></a>
+
+</center>
+
+  
+

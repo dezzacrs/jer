@@ -1,0 +1,76 @@
+﻿@model IEnumerable<LojaRoupasMVCv6.Models.POJO.Clientes>
+@{
+    ViewBag.Title = "JeR - Recebimentos";
+}
+
+<h2>Recebimentos</h2>
+
+
+
+<form method="post" action="selecionarCliente">
+    <input type="text" placeholder="Pesquisar Cliente" name="nomeCliente" id="nomeCliente" />
+    <input type="submit" id="pesquisar" value="Pesquisar" />
+</form>
+
+<table>
+    <tr>
+        <th>
+            Código
+        </th>
+        <th>
+            Nome
+        </th>
+        <th>
+            RG
+        </th>
+        <th>
+            CPF
+        </th>
+        <th>
+            Telefone
+        </th>
+        <th>
+            Endereço
+        </th>
+        <th>
+            Data de Nascimento
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.idCliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nomeCliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.rgCliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cpfCliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.telefoneCliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.enderecoCliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dtnascCliente)
+            </td>
+            <td>
+                @Html.ActionLink("Ver débitos", "verDebitos", new { id = item.idCliente })
+
+            </td>
+
+
+
+
+
+        </tr>
+    }
+</table>

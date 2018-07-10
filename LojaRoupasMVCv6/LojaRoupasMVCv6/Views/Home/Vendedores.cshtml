@@ -1,0 +1,59 @@
+﻿@model PagedList.IPagedList<LojaRoupasMVCv6.Models.POJO.Vendedores>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "JeR - Vendedores";
+}
+
+<h2>Vendedores</h2>
+
+
+<form method="post" action="Vendedores">
+    <input type="text" placeholder="Pesquisar Vendedor" name="nomeVendedor" id="nomeVendedor" />
+    <input type="submit" id="pesquisar" value="Pesquisar" />
+</form>
+
+
+<table>
+    <tr>
+        <th>
+            Código
+        </th>
+        <th>
+            &emsp;Nome
+        </th>
+        <th>
+            Telefone
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <center>@Html.DisplayFor(modelItem => item.idVendedor)</center>
+            </td>
+            <td>
+                &emsp; @Html.DisplayFor(modelItem => item.nomeVendedor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.telefoneVendedor)
+            </td>
+            
+
+
+        </tr>
+    }
+</table>
+<br /><br />
+<div id="GridPaging" class="container-fluid">
+    <div class="row-fluid">
+        <div class="col-md-12 CrudGrid">
+            <div id='Paging' style="text-align: center">
+                P&aacute;gina @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+                @Html.PagedListPager(Model, page => Url.Action("Vendedores", new { page }))
+            </div>
+        </div>
+    </div>
+</div>

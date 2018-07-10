@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "JeR - Painel de Controle";
+}
+
+<h1>Painel de controle</h1>
+<h2> Bem vindo(a) @Session["nomeVendedor"].ToString()</h2>
+<br /><br />
+<td>
+    
+    <a href="@Url.Action("Pedidos", "Home")"><img src="../Images/realizarvenda.png" /></a>
+   <a href="@Url.Action("Relatorios", "Home")"><img src="../Images/relatorios.png" /></a>
+    <a href="@Url.Action("Recebimentos", "Home")"><img src="../Images/recebimentos.png" /></a>
+    &ensp; &ensp; &ensp;
+    <a href="@Url.Action("Clientes", "Home")"><img src="../Images/clientes.png" /></a>
+    <a href="@Url.Action("Produtos", "Home")"><img src="../Images/produtos.png" /></a>
+    <a href="@Url.Action("Vendedores", "Home")"><img src="../Images/vendedores.png" /></a>
+
+
+</td>

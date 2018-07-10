@@ -1,0 +1,110 @@
+﻿@model Tuple<LojaRoupasMVCv6.Models.POJO.Vendas, List<LojaRoupasMVCv6.Models.POJO.Pedidos>>
+
+@{
+    ViewBag.Title = "JeR - Vendas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+
+    function printDiv(divimp) {
+
+        var prtContent = document.getElementById('divimp').innerHTML;
+        //alert("teste" + prtContent);
+
+        var win = window.open();
+        win.document.write(prtContent);
+        win.print();
+        win.close();
+
+    }
+
+</script>
+
+
+<h2>Venda realizada com sucesso!</h2>
+<br />
+<div id="divimp" style="border: 2px solid grey; padding: 5px; width:300px; font-size:12px;">
+
+    <h10>JeR - Sistema para Loja de Roupas</h10>
+    <br /><br />
+    &emsp;&emsp;<b>Relatório de Venda</b>
+    <br /><br />
+    Data: @Model.Item1.dataVenda
+    <br />
+    Venda Nº @Model.Item1.idVenda 
+    <br />
+    Vendedor: @Model.Item1.idVendedor 
+    <br />
+    Forma de pagamento: @TempData["formapag"]
+    <br /><br />
+
+    <table style="font-size: 10px;">
+        <tr>
+            <td>
+                CÓD.
+            </td>
+            <td>
+                QTD.
+            </td>
+            <td>
+                DESCRIÇÃO
+            </td>
+            <td>
+                TAM.
+            </td>
+            <td>
+                VALOR
+            </td>
+        </tr>
+        @for (int i = 0; i < Model.Item2.Count; i++)
+        {
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Item2[i].idProduto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Item2[i].qtdProduto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Item2[i].produtos_descricaoProduto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Item2[i].produtos_tamanhoProduto)
+                </td>
+                <td>
+                    R$@Html.DisplayFor(modelItem => Model.Item2[i].produtos_precoProduto)
+                </td>
+
+
+            </tr>
+
+        }
+    </table>
+    <br />
+
+    <b>Total:</b> R$ @Model.Item1.totalVenda
+    <br />
+
+    
+
+    <br />
+</div>
+
+<br />
+<div>
+    <form>
+        <input type="button" name="imprimir" value="Imprimir" onclick="printDiv()">
+    </form>
+
+</div>
+
+
+<br />
+<br />
+@Html.ActionLink("Voltar", "painel")
+
+
+
+

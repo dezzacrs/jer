@@ -1,0 +1,33 @@
+﻿@model LojaRoupasMVCv6.Models.POJO.Produtos
+
+@{
+    ViewBag.Title = "JeR - Produtos";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Editar Produtos</h2>
+
+<form action="ProdutosEdit" method="post">
+
+    <input type="hidden" value="@Model.idProduto" id="idProduto" name="idProduto" required />
+    <br />
+
+    <h7><b>Código:</b> </h7> <input type="text" readonly placeholder="@Model.idProduto" value="@Model.idProduto" maxlength="13" id="idProduto" name="idProduto" required />
+    <br />
+    <h7><b>Descrição:</b> </h7> <input type="text" placeholder="@Model.descricaoProduto" value="@Model.descricaoProduto"  maxlength="50" id="descricaoProduto" name="descricaoProduto" required />
+    <br />
+    <h7><b>Categoria:</b> </h7> <input type="number" placeholder="@Model.idCategoria" value="@Model.idCategoria" id="idCategoria" name="idCategoria" required />
+    <br />
+    <h7><b>Preço:</b> </h7> <input type="tel" placeholder="@Model.precoProduto" value="@Model.precoProduto" pattern="([0-9]{1,3}\.)?[0-9]{1,3}.[0-9]{2}$" id="precoProduto" name="precoProduto" required />
+    <br />
+    <h7><b>Marca:</b> </h7> <input type="text" placeholder="@Model.marcaProduto" value="@Model.marcaProduto"  maxlength="15" id="marcaProduto" name="marcaProduto" required />
+    <br />
+    <h7><b>Quantidade em estoque:</b> </h7> <input type="number" placeholder="@Model.qtdestoqueProduto" value="@Model.qtdestoqueProduto" maxlength="3" min="1" id="qtdestoqueProduto" name="qtdestoqueProduto" required />
+    <br />
+    <h7><b>Tamanho:</b> </h7> <input type="text" placeholder="@Model.tamanhoProduto" value="@Model.tamanhoProduto"  maxlength="2" id="tamanhoProduto" name="tamanhoProduto" required />
+
+    <br />
+    <br />
+    <input type="submit" value="Editar" class="btngreen" />
+
+</form>

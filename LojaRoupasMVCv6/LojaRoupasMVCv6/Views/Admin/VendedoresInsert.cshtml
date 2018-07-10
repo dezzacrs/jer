@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "JeR - Vendedores";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<script src="~/Scripts/jquery-1.9.1.js" type="text/javascript"></script>
+<script type="text/javascript" src="~/Scripts/jquery.mask.min.js"></script>
+
+<script>
+
+    jQuery(function ($) {
+        $("#telefoneVendedor").mask("(99) 9999-99999");
+    });
+
+</script>
+
+<h2>Cadastrar novo vendedor</h2>
+
+<p style="color:red; font-size: 14px;"> @Html.Raw(ViewBag.retorno) </p>
+
+<form action="cadastrarVendedor" method="post" id="cadastrarVendedor">
+    <h7><b>Nome:</b> </h7> <input type="text" id="nomeVendedor" name="nomeVendedor" required />
+    <br />
+    <h7><b>Telefone:</b> </h7> <input type="tel" id="telefoneVendedor" pattern="\([0-9]{2}\) [0-9]{4}-[0-9]{4,5}$" placeholder="(99) 9999-9999" name="telefonevendedor" required />
+    <br />
+    <h7><b>Senha:</b> </h7> <input type="password" id="senhaVendedor" name="senhaVendedor" required />
+    <br /><br />
+    <input type="submit" value="Cadastrar" class="btngreen" />
+
+</form>

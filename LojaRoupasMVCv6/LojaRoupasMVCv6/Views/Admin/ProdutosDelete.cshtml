@@ -1,0 +1,35 @@
+﻿@model LojaRoupasMVCv6.Models.POJO.Produtos
+
+@{
+    ViewBag.Title = "JeR - Produtos";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Deseja realmente deletar o Produto abaixo?</h2>
+<br />
+<form action="ProdutosDelete" method="post">
+
+    <input type="hidden" value="@Model.idProduto" id="idProduto" name="idProduto" required />
+
+    <h3>@Model.idProduto</h3>
+
+    <h3>@Model.descricaoProduto</h3>
+
+    <h3>@Model.idCategoria</h3>
+
+    <h3>@Model.precoProduto</h3>
+
+    <h3>@Model.marcaProduto</h3>
+
+    <h3>@Model.qtdestoqueProduto</h3>
+
+    <h3>@Model.tamanhoProduto</h3>
+
+    <br />
+    <input type="submit" value="Deletar" class="btnred" />
+    <br />
+    <br />
+    <a href="@Url.Action("ProdutosGrid", "Admin")">Cancelar</a>
+
+    <br />
+</form>

@@ -1,0 +1,89 @@
+﻿@model PagedList.IPagedList<LojaRoupasMVCv6.Models.POJO.Clientes>
+@using PagedList.Mvc;
+
+
+@{
+    ViewBag.Title = "JeR - Clientes";
+}
+
+<h2>Clientes</h2>
+
+
+
+<form method="post" action="Clientes">
+    <input type="text" placeholder="Pesquisar Cliente" name="nomeCliente" id="nomeCliente" />
+    <input type="submit" id="pesquisar" value="Pesquisar" />
+</form>
+
+
+
+
+<table>
+    <tr>
+        <th>
+            Cód.
+        </th>
+        <th>
+            Nome
+        </th>
+        <th>
+            RG
+        </th>
+        <th>
+            CPF
+        </th>
+        <th>
+            Telefone
+        </th>
+        <th>
+            Endereço
+        </th>
+        <th>
+            Data de Nascimento
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.idCliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nomeCliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.rgCliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cpfCliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.telefoneCliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.enderecoCliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dtnascCliente)
+            </td>
+            
+
+
+
+
+
+        </tr>
+    }
+</table>
+<div id="GridPaging" class="container-fluid">
+    <div class="row-fluid">
+        <div class="col-md-12 CrudGrid">
+            <div id='Paging' style="text-align: center">
+                P&aacute;gina @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+                @Html.PagedListPager(Model, page => Url.Action("Clientes", new { page }))
+            </div>
+        </div>
+    </div>
+</div>

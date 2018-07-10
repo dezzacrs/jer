@@ -1,0 +1,142 @@
+﻿@model IEnumerable<LojaRoupasMVCv6.Models.POJO.Pedidos>
+@{
+    ViewBag.Title = "JeR - Pedidos";
+}
+
+
+
+<script>
+    var teste = document.getElementById('@Request["descricaoProduto"]');
+
+    if (teste =! null) {
+         function fo() {
+            document.getElementById("qtdProduto").focus();
+        }
+    }
+    else {
+        function fo() {
+        }
+    }
+</script>
+
+
+
+
+
+
+<h2>Realizar pedido</h2>
+
+
+
+<h8>Vendedor: </h8> @Session["nomeVendedor"].ToString()
+
+<br />
+<br />
+<h8>Adicionar Produtos:</h8>
+<form name="formp" id="formp" method="post" action="pedidos">
+    <p style="background-color:#ffffff;">@Request["descricaoProduto"]</p>
+
+
+    @if (ViewBag.Status == "g")
+    {
+
+
+        <input type="text" value="@Request["idProduto"]" placeholder="Código" name="idProduto" id="idProduto" required />
+    }
+    else
+    {
+        <input type="text" value="" placeholder="Código" name="idProduto" id="idProduto" required />
+    }
+
+
+
+
+    <input pattern="[0-9]+" min="1" type="number" placeholder="Qtd" name="qtdProduto" id="qtdProduto" style="width:45px;" required />
+    <input type="submit" id="Inserir" value="Inserir" />
+
+</form>
+
+<a href="/Home/Produtos">Selecionar Produtos</a>
+
+<p style="color:red; font-size: 14px;"> @Html.Raw(ViewBag.retorno) </p>
+<p style="color: green; font-size: 14px;"> @Html.Raw(ViewBag.retorno2) </p>
+
+
+    <table>
+        <tr>
+            <th>
+                Código&ensp;
+            </th>
+            <th>
+                &ensp;Qtd&ensp;
+            </th>
+            <th>
+                &ensp;Descrição&ensp;
+            </th>
+            <th>
+                &ensp;Tamanho&ensp;
+            </th>
+            <th>
+                &ensp;Preço&ensp;
+            </th>
+
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.idProduto)
+                    
+                </td>
+                <td>
+                    &ensp;&ensp;@Html.DisplayFor(modelItem => item.qtdProduto)
+                </td>
+                <td>
+                    &ensp;&ensp;@Html.DisplayFor(modelItem => item.produtos_descricaoProduto)
+                </td>
+                <td>
+                    &ensp;&ensp;@Html.DisplayFor(modelItem => item.produtos_tamanhoProduto)
+                </td>
+                <td>
+                    &ensp;&ensp;R$ @Html.DisplayFor(modelItem => item.produtos_precoProduto)
+                </td>
+                <td>
+                    @Html.ActionLink("Deletar", "deletarPedido", new { id = item.idPedido })
+
+                </td>
+            </tr>
+        }
+
+    </table>
+    
+
+
+<br />
+<hr align="center" width="auto" size="1" color="#fff">
+<br />
+<h9><b>Total:</b> R$ @Html.Raw(ViewBag.total)</h9> 
+
+
+
+<br />
+<br />
+
+<form method="post" action="vendas">
+    <input type="submit" value="Realizar venda" class="btngreen" />
+</form>
+
+
+<h12>@Html.ActionLink("Cancelar Pedido", "cancelarPedido")</h12>
+   
+
+
+
+
+
+
+
+
+

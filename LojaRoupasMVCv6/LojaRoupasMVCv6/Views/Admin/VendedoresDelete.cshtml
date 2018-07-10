@@ -1,0 +1,29 @@
+﻿@model LojaRoupasMVCv6.Models.POJO.Vendedores
+
+@{
+    ViewBag.Title = "JeR - Vendedores";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Deseja realmente deletar o Vendedor abaixo?</h2>
+<br />
+<form action="VendedoresDelete" method="post">
+
+    <input type="hidden" value="@Model.idVendedor" id="idVendedor" name="idVendedor" required />
+    <input type="hidden" value="@Model.nomeVendedor" id="nomeVendedor" name="nomeVendedor" required />
+    <input type="hidden" value="@Model.telefoneVendedor" id="telefoneVendedor" name="telefoneVendedor" required />
+   
+    <h3>@Model.idVendedor</h3>
+    
+    <h3>@Model.nomeVendedor</h3>
+    
+    <h3>@Model.telefoneVendedor</h3>
+        <br />
+        <input type="submit" value="Deletar" class="btnred"/>
+
+    <br />
+    <br />
+    <a href="@Url.Action("VendedoresGrid", "Admin")">Cancelar</a>
+
+        <br />
+</form>

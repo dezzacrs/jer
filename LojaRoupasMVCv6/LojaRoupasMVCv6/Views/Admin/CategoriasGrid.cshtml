@@ -1,0 +1,52 @@
+﻿@model IEnumerable<LojaRoupasMVCv6.Models.POJO.Categorias>
+
+@{
+    ViewBag.Title = "JeR - Categorias";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Categorias</h2>
+
+@if (TempData["Msg"] != null)
+{
+
+    <p style="color:green; font-size: 14px;"> @TempData["Msg"] </p>
+}
+
+
+<h4>@Html.ActionLink("Criar novo", "CategoriasInsert")</h4>
+
+
+<table>
+    <tr>
+        <th>
+            Código
+        </th>
+        <th>
+            Nome
+        </th>
+        
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <center>@Html.DisplayFor(modelItem => item.idCategoria) &emsp;</center>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nomeCategoria)
+            </td>
+            
+            <td>
+                @Html.ActionLink("Editar", "CategoriasEdit", new { id = item.idCategoria })
+            </td>
+            <td>
+                @Html.ActionLink("Deletar", "CategoriasDelete", new { id = item.idCategoria })
+            </td>
+
+
+
+        </tr>
+    }
+</table>

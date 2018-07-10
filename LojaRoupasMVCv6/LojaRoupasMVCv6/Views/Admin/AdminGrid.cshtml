@@ -1,0 +1,33 @@
+﻿@model IEnumerable <LojaRoupasMVCv6.Models.POJO.Admin>
+@{
+    ViewBag.Title = "AdminGrid";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>AdminGrid</h2>
+
+<div class="container-fluid" id="GridAdmin">
+    <div class="row-fluid">
+        <div class="col-md-3">
+           Código
+        </div>
+        <div class="col-md-9">
+            Nome
+        </div>
+    </div>    
+
+    <div class="container-fluid">
+        @foreach (var item in Model)
+{
+    <div class="row-fluid">
+        <div class="col-md-3">
+            @Html.DisplayFor(modelItem => item.idAdmin)
+        </div>
+        <div class="col-md-9">
+            @Html.DisplayFor(modelItem => item.nomeAdmin)
+        </div>
+    </div>
+}
+    </div>
+
+</div>

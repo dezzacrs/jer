@@ -1,0 +1,80 @@
+﻿@model PagedList.IPagedList<LojaRoupasMVCv6.Models.POJO.Vendedores>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "JeR - Vendedores";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+
+
+
+<h2>Vendedores</h2>
+
+<hr align="center" width="auto" size="1" color="#fff">
+<br />
+<form method="post" action="VendedoresGrid">
+    <input type="text" placeholder="Pesquisar Vendedor" name="nomeVendedor" id="nomeVendedor" />
+    <input type="submit" id="pesquisar" value="Pesquisar" />
+</form>
+<br />
+@if (TempData["Msg"] != null)
+{
+
+    <p style="color:green; font-size: 14px;"> @TempData["Msg"] </p>
+}
+
+
+<h4>@Html.ActionLink("Criar novo", "VendedoresInsert")</h4>
+
+
+        <table>
+            <tr>
+                <th>
+                    Código
+                </th>
+                <th>
+                   &emsp;Nome
+                </th>
+                <th>
+                    Telefone
+                </th>
+
+            </tr>
+
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    <center>@Html.DisplayFor(modelItem => item.idVendedor)</center>
+                </td>
+                <td>
+                    &emsp; @Html.DisplayFor(modelItem => item.nomeVendedor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.telefoneVendedor)
+                </td>
+                <td>
+                   @Html.ActionLink("Editar", "VendedoresEdit", new { id = item.idVendedor })
+                </td>
+                <td>
+                    @Html.ActionLink("Deletar", "VendedoresDelete", new { id = item.idVendedor })
+                </td>
+
+
+
+            </tr>
+            }
+        </table>
+<br /><br />
+<div id="GridPaging" class="container-fluid">
+    <div class="row-fluid">
+        <div class="col-md-12 CrudGrid">
+            <div id='Paging' style="text-align: center">
+                P&aacute;gina @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+                @Html.PagedListPager(Model, page => Url.Action("VendedoresGrid", new { page }))
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "JeR - Categorias";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Cadastrar nova Categoria</h2>
+
+<p style="color:red; font-size: 14px;"> @Html.Raw(ViewBag.retorno) </p>
+
+<form action="cadastrarCategoria" method="post" id="cadastrarCategoria">
+    <h7><b>Nome:</b> </h7> <input type="text" id="nomeCategoria" name="nomeCategoria" required />
+    <br /><br />
+    <input type="submit" value="Cadastrar" class="btngreen" />
+
+</form>

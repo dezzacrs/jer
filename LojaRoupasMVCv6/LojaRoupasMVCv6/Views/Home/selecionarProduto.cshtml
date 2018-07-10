@@ -1,0 +1,86 @@
+﻿@model PagedList.IPagedList<LojaRoupasMVCv6.Models.POJO.Produtos>
+@using PagedList.Mvc;
+
+
+@{
+    ViewBag.Title = "JeR - Produtos";
+}
+
+<h2>Produtos</h2>
+
+
+
+<form method="post" action="SelecionarProduto">
+    <input type="text" placeholder="Pesquisar Produto" name="produto" id="produto" />
+    <input type="submit" id="pesquisar" value="Pesquisar" />
+</form>
+
+
+
+
+<table>
+    <tr>
+        <th>
+            Cód.
+        </th>
+        <th>
+            Descrição
+        </th>
+        <th>
+            Preço
+        </th>
+        <th>
+            Marca
+        </th>
+        <th>
+            Tam.
+        </th>
+        <th>
+            Qtd.
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.idProduto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.descricaoProduto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.precoProduto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.marcaProduto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tamanhoProduto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.qtdestoqueProduto)
+            </td>
+
+            <td>
+               
+                @Html.ActionLink("Adicionar", "pedidos", new { item.idProduto, item.descricaoProduto })
+            </td>
+
+
+
+
+
+        </tr>
+    }
+</table>
+<div id="GridPaging" class="container-fluid">
+    <div class="row-fluid">
+        <div class="col-md-12 CrudGrid">
+            <div id='Paging' style="text-align: center">
+                P&aacute;gina @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+                @Html.PagedListPager(Model, page => Url.Action("SelecionarProduto", new { page }))
+            </div>
+        </div>
+    </div>
+</div>

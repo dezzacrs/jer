@@ -1,0 +1,24 @@
+﻿@model LojaRoupasMVCv6.Models.POJO.Categorias
+
+@{
+    ViewBag.Title = "JeR - Categorias";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Editar Categorias</h2>
+
+<form action="CategoriasEdit" method="post">
+
+    <input type="hidden" value="@Model.idCategoria" id="idCategoria" name="idCategoria" required />
+    <br />
+
+    <h7><b>Código:</b> </h7> <input type="text" placeholder="@Model.idCategoria" value="@Model.idCategoria" id="idCategoria" name="idCategoria" readonly required />
+    <br />
+    <h7><b>Nome:</b> </h7> <input type="text" placeholder="@Model.nomeCategoria" value="@Model.nomeCategoria" id="nomeCategoria" name="nomeCategoria" required />
+    <br />
+    
+    
+    <br />
+    <input type="submit" value="Editar" class="btngreen" />
+
+</form>

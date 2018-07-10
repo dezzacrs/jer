@@ -1,0 +1,81 @@
+﻿@{
+    ViewBag.Title = "JeR - Selecionar método de pagamento";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<script>
+
+    function run() {
+
+        var res = 1;
+        divdinheiro.innerHTML = "<form action='' method='post'><input type='hidden' name='VT' id='VT' value='@ViewBag.total'><table><tr><td><h8><b>Recebido:</h8></b> </td><td>R$ <input type='text' name='recebido' id='recebido'  style='width:70px;' onkeyup='calcular();'/></td></tr><tr><td><h8><b>Troco: </h8></b></td><td> R$ <input type='text' name='troco' id='troco' style='width:70px;' readonly='readonly' /><br><br></td></tr></table></form>";
+
+
+    }
+
+    function limpar() {
+
+        divdinheiro.innerHTML = "";
+
+
+    }
+
+    function calcular() {
+
+        var recebido = document.getElementById("recebido").value; //OK
+        var total = document.getElementById("VT").value;
+
+        var resultado = parseFloat(recebido.replace(",", ".") - total.replace(",", ".")).toFixed(2).replace(".",",");
+        document.getElementById("troco").value = resultado;
+
+
+       // var elemresult = document.getElementById("resultado").value;
+
+        //elemresult.textContent = resultado;
+
+        //alert(resultado);
+
+    }
+
+
+
+
+
+
+</script>
+
+
+<h2>Venda à vista</h2>
+
+
+
+
+
+    <h9><b>Total:</b> R$ @Html.Raw(ViewBag.total)</h9> 
+<input type="hidden" name="VT" id="VT" value="@ViewBag.total">
+   
+    <br />
+    <h8><b>
+    Selecione a forma de pagamento:</h8></b>
+<br /><br />
+
+<br />
+
+    <form method="post" action="realizarVendaaVista">
+        <fieldset style="position:relative; white-space:nowrap;">
+            <label for="dinheiro"><input type="radio" style="width:70px;" name="formapagVenda" onchange="run()" value="dinheiro"><img src="../Images/dinheiro2.png" />&nbsp;Dinheiro</label><br />
+            <div id="divdinheiro">
+                
+            </div>
+            
+            <label for="mastercredito"><input type="radio" style="width:70px;" name="formapagVenda" onchange="limpar()" value="mastercredito"> <img src="../Images/mastercredito.png" />&nbsp;Master Crédito</label><br />
+            <label for="maestrodebito"><input type="radio" style="width:70px;" name="formapagVenda" onchange="limpar()" value="maestrodebito"> <img src="../Images/masterdebito.png" />&nbsp;Master Débito</label><br />
+            <label for="visacredito"><input type="radio" style="width:70px;" name="formapagVenda" onchange="limpar()" value="visacredito"> <img src="../Images/visacredito.png" />&nbsp;Visa Crédito</label><br />
+            <label for="visadebito"><input type="radio" style="width:70px;" name="formapagVenda" onchange="limpar()" value="visadebito"> <img src="../Images/visadebito.png" />&nbsp;Visa Débito</label><br />
+</fieldset>
+        <br /><br />
+        <input type="submit" value="Confirmar" class="btngreen" />
+    </form>
+<br />
+<h12>@Html.ActionLink("Cancelar Pedido", "cancelarPedido")</h12>

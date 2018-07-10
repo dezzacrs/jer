@@ -1,0 +1,66 @@
+﻿@model Tuple<LojaRoupasMVCv6.Models.POJO.Parcelas, LojaRoupasMVCv6.Models.POJO.Pagamento>
+
+@{
+    ViewBag.Title = "JeR - Recebimentos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+
+    function printDiv(divimp) {
+
+        var prtContent = document.getElementById('divimp').innerHTML;
+        //alert("teste" + prtContent);
+
+        var win = window.open();
+        win.document.write(prtContent);
+        win.print();
+        win.close();
+
+    }
+
+</script>
+
+
+<h2>Pagamento realizado com sucesso!</h2>
+<br />
+
+<div id="divimp" style="border: 2px solid grey; padding: 5px; width:300px; font-size:12px;">
+
+    <h10>JeR - Sistema para Loja de Roupas</h10>
+    <br /><br />
+    &emsp;&emsp;<b>Comprovante de Pagamento</b>
+    <br /><br />
+    Cliente: @Session["Msg"]
+    <br />
+    Parcela nº @Model.Item1.numParcela
+    <br />
+    Vencimento: @Model.Item1.dtvencParcela
+    <br />
+    Valor: R$ @Model.Item1.valorParcela
+    <br />
+    <br />
+    Id Pagamento: @Model.Item2.idPagamento
+    <br />
+    Data Pagamento: @Model.Item2.dataPagamento
+    <br />
+    Vendedor: @Model.Item2.idVendedor
+    <br /><br />
+    ------------------------------------------------
+
+</div>
+
+<br />
+<div>
+    <form>
+        <input type="button" name="imprimir" value="Imprimir" onclick="printDiv()">
+    </form>
+
+</div>
+
+
+<br />
+<br />
+@Html.ActionLink("Voltar", "painel")
+
+

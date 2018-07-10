@@ -1,0 +1,52 @@
+﻿@model IEnumerable<LojaRoupasMVCv6.Models.POJO.Parcelas>
+@{
+    ViewBag.Title = "JeR - Débitos";
+}
+
+<h2>Parcelas</h2>
+
+
+
+<h8> Cliente:</h8> <h7>@Session["Msg"] </h7>
+
+<br /><br />
+
+<table>
+    <tr>
+        <th>
+           Parcela&ensp;
+        </th>
+        <th>
+            Vencimento
+        </th>
+        <th>
+            &ensp;Valor
+        </th>
+        
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <center>@Html.DisplayFor(modelItem => item.numParcela)</center>
+            </td>
+            <td>
+                <center>&ensp;@Html.DisplayFor(modelItem => item.dtvencParcela)</center>
+            </td>
+            <td>
+                &ensp;R$ @Html.DisplayFor(modelItem => item.valorParcela)
+            </td>
+            <td>
+                @Html.ActionLink("Pagar", "pagarparcela", new { id = item.idParcela })
+
+            </td>
+
+
+
+
+
+        </tr>
+    }
+</table>

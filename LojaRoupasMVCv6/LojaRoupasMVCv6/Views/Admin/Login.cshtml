@@ -1,0 +1,21 @@
+﻿@model LojaRoupasMVCv6.Models.POJO.Admin
+
+@{
+    ViewBag.Title = "JeR - Entrar como Administrador";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h3>Entrando como Administrador:</h3>
+<br />
+<form method="post" action="Login">
+    <h7>Usuário: </h7><input type="text" name="idAdmin" id="idAdmin" required/>
+    <br />
+    <h7>Senha: </h7><input type="password" name="senhaAdmin" id="senhaAdmin" required />
+    <br />
+    <input type="submit" id="Inserir" value="Entrar" />
+    <br />
+    <br />
+    <p style="color:red; font-size:large;"> @Html.Raw(ViewBag.retorno) </p>
+  
+    <p style="">@Html.ActionLink("Entrar como Vendedor", "Login", "Home")</p>
+</form>

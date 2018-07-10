@@ -1,0 +1,35 @@
+﻿@model LojaRoupasMVCv6.Models.POJO.Clientes
+
+@{
+    ViewBag.Title = "JeR - Clientes";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Deseja realmente deletar o Cliente abaixo?</h2>
+<br />
+<form action="ClientesDelete" method="post">
+
+    <input type="hidden" value="@Model.idCliente" id="idCliente" name="idCliente" required />
+
+    <h3>@Model.idCliente</h3>
+
+    <h3>@Model.nomeCliente</h3>
+
+    <h3>@Model.rgCliente</h3>
+
+    <h3>@Model.cpfCliente</h3>
+
+    <h3>@Model.telefoneCliente</h3>
+
+    <h3>@Model.enderecoCliente</h3>
+
+    <h3>@Model.dtnascCliente</h3>
+
+    <br />
+    <input type="submit" value="Deletar" class="btnred" />
+    <br />
+    <br />
+    <a href="@Url.Action("ClientesGrid", "Admin")">Cancelar</a>
+
+    <br />
+</form>
